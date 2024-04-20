@@ -1,6 +1,5 @@
 local Config = {
     ServerImage = "https://cdn.discordapp.com/attachments/1185999786260828250/1185999837607493732/antScripts.jpg?ex=662e89ec&is=661c14ec&hm=4df8803e9923dc416d7dcf33de34d397184f0433a7fae98bdfbbaf1c4feee886&",
-
     Seat = "12A",
     Gate = "B12",
     Departure = "JFK",
@@ -11,9 +10,7 @@ local Config = {
 
 AddEventHandler('playerConnecting', function(pName, pKickReason, pDeferrals)
     local src = source
-    
     pDeferrals.defer()
-
     Wait(1000)
     CreateThread(function()
         local breakLoop = false
@@ -127,9 +124,7 @@ AddEventHandler('playerConnecting', function(pName, pKickReason, pDeferrals)
                     breakLoop = true
                 end
             end)
-
             if breakLoop then break end
-    
             Wait(1000)
         end
     end)

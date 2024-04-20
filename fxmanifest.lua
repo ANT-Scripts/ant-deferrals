@@ -8,3 +8,7 @@ server_scripts {
     --'modules/rules_agreement.lua',
     'modules/boarding_pass.lua'
 }
+
+escrow_ignore {
+    'modules/*.lua'
+}

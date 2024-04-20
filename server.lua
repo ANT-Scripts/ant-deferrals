@@ -31,20 +31,80 @@ AddEventHandler('playerConnecting', function(pName, pKickReason, pDeferrals)
     pDeferrals.defer()
 
     Wait(1000)
-    
     CreateThread(function()
         local breakLoop = false
         while true do
             local card = {
                 type = 'AdaptiveCard',
                 body = {
+                    createImageElement('https://logos-world.net/wp-content/uploads/2021/03/FiveM-Logo.png', 'large', 'center'), -- Change 'small' for smaller size
                     {
                         type = 'Container',
                         items = {
-                            createImageElement('https://logos-world.net/wp-content/uploads/2021/03/FiveM-Logo.png', 'large', 'center'),
-                            createTextBlockElement(('Welcome, %s'):format(pName), 'Light', 'large', 'center'),
+                            {
+                                type = 'ColumnSet',
+                                columns = {
+                                    {
+                                        type = 'Column',
+                                        width = 'stretch',
+                                        items = {
+                                            -- Left column content
+                                            {
+                                                type = 'TextBlock',
+                                                text = string.format("**Passenger:** %s", pName),
+                                                weight = 'Lighter',
+                                                size = 'Medium',
+                                                horizontalAlignment = 'Left'
+                                            },
+                                            {
+                                                type = 'TextBlock',
+                                                text = '**Seat:** 12A',
+                                                weight = 'Lighter',
+                                                size = 'Medium',
+                                                horizontalAlignment = 'Left'
+                                            },
+                                            {
+                                                type = 'TextBlock',
+                                                text = '**Gate:** B12',
+                                                weight = 'Lighter',
+                                                size = 'Medium',
+                                                horizontalAlignment = 'Left'
+                                            }
+                                        }
+                                    },
+                                    {
+                                        type = 'Column',
+                                        width = 'stretch',
+                                        items = {
+                                            -- Right column content
+                                            {
+                                                type = 'TextBlock',
+                                                text = '**Departure:** JFK',
+                                                weight = 'Lighter',
+                                                size = 'Medium',
+                                                horizontalAlignment = 'Left'
+                                            },
+                                            {
+                                                type = 'TextBlock',
+                                                text = '**Destination:** LAX',
+                                                weight = 'Lighter',
+                                                size = 'Medium',
+                                                horizontalAlignment = 'Left'
+                                            },
+                                            {
+                                                type = 'TextBlock',
+                                                text = '**Departure Time:** 10:00 AM',
+                                                weight = 'Lighter',
+                                                size = 'Medium',
+                                                horizontalAlignment = 'Left'
+                                            }
+                                        }
+                                    }
+                                }
+                            },
                             {
                                 type = 'ActionSet',
+                                horizontalAlignment = 'Center',
                                 actions = {
                                     createActionSubmit('submit_join', 'Join')
                                 }

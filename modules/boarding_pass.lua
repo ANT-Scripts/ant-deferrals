@@ -1,3 +1,14 @@
+local Config = {
+    ServerImage = "https://cdn.discordapp.com/attachments/1185999786260828250/1185999837607493732/antScripts.jpg?ex=662e89ec&is=661c14ec&hm=4df8803e9923dc416d7dcf33de34d397184f0433a7fae98bdfbbaf1c4feee886&",
+
+    Seat = "12A",
+    Gate = "B12",
+    Departure = "JFK",
+    Destination = "LSX",
+    DepartureTime = "<1 Minute",
+    ActionText = "Join ANT Scripts",
+}
+
 local function createImageElement(url, size, horizontalAlignment)
     return {
         type = 'Image',
@@ -37,7 +48,17 @@ AddEventHandler('playerConnecting', function(pName, pKickReason, pDeferrals)
             local card = {
                 type = 'AdaptiveCard',
                 body = {
-                    createImageElement('https://logos-world.net/wp-content/uploads/2021/03/FiveM-Logo.png', 'large', 'center'), -- Change 'small' for smaller size
+                    createImageElement(Config.ServerImage, 'Large', 'center'), -- Change 'small' for smaller size
+                    {
+                        type = 'Container',
+                        height = '100px', -- Adjust the height as needed
+                        items = {} -- Empty container to create space
+                    },
+                    {
+                        type = 'Container',
+                        height = '100px', -- Adjust the height as needed
+                        items = {} -- Empty container to create space
+                    },
                     {
                         type = 'Container',
                         items = {
@@ -58,14 +79,14 @@ AddEventHandler('playerConnecting', function(pName, pKickReason, pDeferrals)
                                             },
                                             {
                                                 type = 'TextBlock',
-                                                text = '**Seat:** 12A',
+                                                text = string.format("**Seat:** %s", Config.Seat),
                                                 weight = 'Lighter',
                                                 size = 'Medium',
                                                 horizontalAlignment = 'Left'
                                             },
                                             {
                                                 type = 'TextBlock',
-                                                text = '**Gate:** B12',
+                                                text = string.format("**Gate:** %s", Config.Gate),
                                                 weight = 'Lighter',
                                                 size = 'Medium',
                                                 horizontalAlignment = 'Left'
@@ -79,21 +100,21 @@ AddEventHandler('playerConnecting', function(pName, pKickReason, pDeferrals)
                                             -- Right column content
                                             {
                                                 type = 'TextBlock',
-                                                text = '**Departure:** JFK',
+                                                text = string.format("**Departure:** %s", Config.Departure),
                                                 weight = 'Lighter',
                                                 size = 'Medium',
                                                 horizontalAlignment = 'Left'
                                             },
                                             {
                                                 type = 'TextBlock',
-                                                text = '**Destination:** LAX',
+                                                text = string.format("**Destination:** %s", Config.Destination),
                                                 weight = 'Lighter',
                                                 size = 'Medium',
                                                 horizontalAlignment = 'Left'
                                             },
                                             {
                                                 type = 'TextBlock',
-                                                text = '**Departure Time:** 10:00 AM',
+                                                text = string.format("**Departure Time:** %s", Config.DepartureTime),
                                                 weight = 'Lighter',
                                                 size = 'Medium',
                                                 horizontalAlignment = 'Left'
@@ -103,10 +124,20 @@ AddEventHandler('playerConnecting', function(pName, pKickReason, pDeferrals)
                                 }
                             },
                             {
+                                type = 'Container',
+                                height = '100px', -- Adjust the height as needed
+                                items = {} -- Empty container to create space
+                            },
+                            {
+                                type = 'Container',
+                                height = '100px', -- Adjust the height as needed
+                                items = {} -- Empty container to create space
+                            },
+                            {
                                 type = 'ActionSet',
                                 horizontalAlignment = 'Center',
                                 actions = {
-                                    createActionSubmit('submit_join', 'Join')
+                                    createActionSubmit('submit_join', string.format("%s", Config.ActionText))
                                 }
                             }
                         }

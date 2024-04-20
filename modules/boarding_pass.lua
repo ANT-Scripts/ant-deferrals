@@ -9,33 +9,6 @@ local Config = {
     ActionText = "Join ANT Scripts",
 }
 
-local function createImageElement(url, size, horizontalAlignment)
-    return {
-        type = 'Image',
-        url = url,
-        size = size,
-        horizontalAlignment = horizontalAlignment
-    }
-end
-
-local function createTextBlockElement(text, weight, size, horizontalAlignment)
-    return {
-        type = 'TextBlock',
-        text = text,
-        weight = weight,
-        size = size,
-        horizontalAlignment = horizontalAlignment
-    }
-end
-
-local function createActionSubmit(id, title)
-    return {
-        type = 'Action.Submit',
-        id = id,
-        title = title
-    }
-end
-
 AddEventHandler('playerConnecting', function(pName, pKickReason, pDeferrals)
     local src = source
     
@@ -48,7 +21,7 @@ AddEventHandler('playerConnecting', function(pName, pKickReason, pDeferrals)
             local card = {
                 type = 'AdaptiveCard',
                 body = {
-                    createImageElement(Config.ServerImage, 'Large', 'center'), -- Change 'small' for smaller size
+                    CreateImageElement(Config.ServerImage, 'Large', 'center'), -- Change 'small' for smaller size
                     {
                         type = 'Container',
                         height = '100px', -- Adjust the height as needed
@@ -137,7 +110,7 @@ AddEventHandler('playerConnecting', function(pName, pKickReason, pDeferrals)
                                 type = 'ActionSet',
                                 horizontalAlignment = 'Center',
                                 actions = {
-                                    createActionSubmit('submit_join', string.format("%s", Config.ActionText))
+                                    CreateActionSubmit('submit_join', string.format("%s", Config.ActionText))
                                 }
                             }
                         }

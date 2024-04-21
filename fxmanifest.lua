@@ -1,16 +1,9 @@
-fx_version 'cerulean'
-game 'gta5'
+fx_version 'bodacious'
+game 'common'
 
-author 'ANT Scripts'
-version '1.0.0'
+server_script "server/sv_queue_config.lua"
+server_script "connectqueue.lua"
+server_script "functions.lua"
 
-server_scripts {
-    'functions.lua',
-    'modules/rules_agreement.lua',
-    --'modules/boarding_pass.lua'
-}
-
-escrow_ignore {
-    'modules/*.lua',
-    'functions.lua'
-}
+server_script "shared/sh_queue.lua"
+client_script "shared/sh_queue.lua"

@@ -5,7 +5,7 @@ local BoardingPassConfig = {
     FlightNumber = "ANT24",
     DepartureAirport = "IND (Indianapolis)",
     ArrivalAirport = "LSX (Los Santos)",
-    DepartureTime = function() 
+    DepartureTime = function()
         return os.date("%I:%M %p") -- Format: 12-hour, with AM/PM
     end,
     ArrivalTime = "<2 Minutes",
@@ -14,9 +14,7 @@ local BoardingPassConfig = {
 
 AddEventHandler('playerConnecting', function(pName, pKickReason, pDeferrals)
     local src = source
-    
     pDeferrals.defer()
-
     Wait(1000)
     CreateThread(function()
         local breakLoop = false
@@ -66,7 +64,6 @@ AddEventHandler('playerConnecting', function(pName, pKickReason, pDeferrals)
                     }
                 }
             }
-    
             pDeferrals.presentCard(card, function(pData, pRawData)
                 if pData.submitId == 'accept_boarding' then
                     pDeferrals.update('✅ Connecting to server...')
@@ -77,7 +74,6 @@ AddEventHandler('playerConnecting', function(pName, pKickReason, pDeferrals)
                     breakLoop = true
                 end
             end)
-
             if breakLoop then 
                 break
             end

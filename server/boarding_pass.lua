@@ -24,8 +24,10 @@ AddEventHandler('playerConnecting', function(pName, pKickReason, pDeferrals)
                 body = {
                     {
                         type = 'Container',
+                        style = 'default', -- Add emphasis style to make the header stand out
+                        background = 'light',
                         items = {
-                            CreateTextBlockElement("**Boarding Pass**", "Bolder", "Medium", "Center")
+                            CreateTextBlockElement("**Boarding Pass**", "Bolder", "Large", "Center"),
                         }
                     },
                     {
@@ -36,34 +38,42 @@ AddEventHandler('playerConnecting', function(pName, pKickReason, pDeferrals)
                     },
                     {
                         type = 'Container',
+                        style = 'default',
+                        background = 'light',
                         items = {
-                            CreateTextBlockElement("Passenger Name: " .. pName, "Lighter", "Medium", "Center"),
-                            CreateTextBlockElement("Flight: " .. BoardingPassConfig.FlightNumber, "Lighter", "Medium", "Center"),
-                            CreateTextBlockElement("Seat: " .. BoardingPassConfig.SeatNumber, "Lighter", "Medium", "Center")
+                            CreateTextBlockElement("**Passenger Name:** " .. pName, "Lighter", "Medium", "Center"),
+                            CreateTextBlockElement("**Flight:** " .. BoardingPassConfig.FlightNumber, "Lighter", "Medium", "Center"),
+                            CreateTextBlockElement("**Seat:** " .. BoardingPassConfig.SeatNumber, "Lighter", "Medium", "Center")
+                        }
+                    },                    
+                    {
+                        type = 'Container',
+                        style = 'default',
+                        background = 'light',
+                        items = {
+                            CreateTextBlockElement("**Departure Location:** " .. BoardingPassConfig.DepartureAirport, "Lighter", "Medium", "Center"),
+                            CreateTextBlockElement("**Departure Time:** " .. BoardingPassConfig.DepartureTime(), "Lighter", "Medium", "Center")
                         }
                     },
                     {
                         type = 'Container',
+                        style = 'default',
+                        background = 'light',
                         items = {
-                            CreateTextBlockElement("Departure: " .. BoardingPassConfig.DepartureAirport .. " (" .. BoardingPassConfig.DepartureTime() .. ")", "Lighter", "Medium", "Center")
-                        }
-                    },
-                    {
-                        type = 'Container',
-                        items = {
-                            CreateTextBlockElement("Arrival: " .. BoardingPassConfig.ArrivalAirport .. " (" .. BoardingPassConfig.ArrivalTime .. ")", "Lighter", "Medium", "Center")
+                            CreateTextBlockElement("**Arrival Location:** " .. BoardingPassConfig.ArrivalAirport, "Lighter", "Medium", "Center"),
+                            CreateTextBlockElement("**Arrival Time:** " .. BoardingPassConfig.ArrivalTime, "Lighter", "Medium", "Center")
                         }
                     },
                     {
                         type = 'ActionSet',
                         horizontalAlignment = 'Center',
                         actions = {
-                            CreateActionSubmit('accept_boarding', "Check-in"),
+                            CreateActionSubmit('accept_boarding', "Check-In"),
                             CreateActionOpenURL('open_discord', "Join Discord", BoardingPassConfig.DiscordLink)
                         }
                     }
                 }
-            }
+            }            
             pDeferrals.presentCard(card, function(pData, pRawData)
                 if pData.submitId == 'accept_boarding' then
                     pDeferrals.update('✅ Connecting to server...')

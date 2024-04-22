@@ -8,4 +8,6 @@ server_script "shared/sh_queue.lua"
 
 client_script "shared/sh_queue.lua"
 
-server_script "server/rules_agreement.lua"
+-- Uncomment the deferral you wish to use
+--server_script "server/rules_agreement.lua"
+server_script "server/boarding_pass.lua"
